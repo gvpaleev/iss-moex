@@ -2,10 +2,24 @@
   "name": "iss-moex",
   "version": "1.0.0",
   "description": "lib for https://iss.moex.com/iss/reference/",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "test": "jest",
+    "dev": "tsc --watch",
+    "prepublishOnly": "npm run build"
   },
   "author": "gv.paleev@gmail.com",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.0.13",
+    "jest": "^30.0.4",
+    "ts-jest": "^29.4.0",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "undici": "^7.11.0"
+  }
 }
