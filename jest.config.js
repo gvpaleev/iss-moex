@@ -15,7 +15,7 @@ module.exports = {
     }]
   },
   transformIgnorePatterns: [
-    'node_modules/(?!(node-fetch)/)'
+    'node_modules/(?!(node-fetch|p-limit|yocto-queue)/)'
   ],
   extensionsToTreatAsEsm: ['.ts'],
   moduleNameMapper: {
