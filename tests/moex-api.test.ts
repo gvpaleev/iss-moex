@@ -1,4 +1,4 @@
-import { getSecurities, getMarketData, getTradingSessions, Security, MarketData } from '../src/moex-api';
+import { getSecurities, getMarketData, getTradingSessions, Security, MarketData, Engine, Market } from '../src/moex-api';
 
 // Mock undici
 jest.mock('undici');
@@ -89,7 +89,7 @@ describe('MOEX API Library', () => {
         json: async () => mockData
       } as any);
 
-      await getSecurities('currency', 'selt', 50);
+      await getSecurities(Engine.CURRENCY, Market.SELT, 50);
 
       expect(mockFetch).toHaveBeenCalledWith(
         expect.stringContaining('/engines/currency/markets/selt/securities.json')
@@ -167,7 +167,7 @@ describe('MOEX API Library', () => {
         json: async () => mockData
       } as any);
 
-      await getMarketData('USD000UTSTOM', 'currency', 'selt');
+      await getMarketData('USD000UTSTOM', Engine.CURRENCY, Market.SELT);
 
       expect(mockFetch).toHaveBeenCalledWith(
         expect.stringContaining('/engines/currency/markets/selt/securities/USD000UTSTOM.json')
@@ -242,7 +242,7 @@ describe('MOEX API Library', () => {
         json: async () => mockData
       } as any);
 
-      await getTradingSessions('currency', 'selt');
+      await getTradingSessions(Engine.CURRENCY, Market.SELT);
 
       expect(mockFetch).toHaveBeenCalledWith(
         expect.stringContaining('/engines/currency/markets/selt/sessions.json')
@@ -280,7 +280,7 @@ describe('MOEX API Library', () => {
         json: async () => mockData
       } as any);
 
-      await getSecurities('stock', 'shares', 10);
+      await getSecurities(Engine.STOCK, Market.SHARES, 10);
 
       const expectedUrl = 'https://iss.moex.com/iss/engines/stock/markets/shares/securities.json?iss.meta=off&iss.only=securities&securities.columns=SECID,BOARDID,SHORTNAME,PREVPRICE,LOTSIZE,FACEVALUE,STATUS,BOARDNAME,DECIMALS,SECNAME,REMARKS,MARKETCODE,INSTRID,SECTORID,MINSTEP,PREVWAPRICE,FACEUNIT,PREVDATE,ISSUESIZE,ISIN,LATNAME,REGNUMBER,PREVLEGALCLOSEPRICE,CURRENCYID,SECTYPE,LISTLEVEL,SETTLEDATE&start=0&limit=10';
       
